@@ -1,7 +1,7 @@
 import tkinter as tk
 from tkinter import ttk
 
-SAVE_FILENAME = "cookie_clicker_save.json"
+SAVE_FILENAME = "popcornClickerSave.json"
 TICK_MS = 100
 
 class Upgrade:
