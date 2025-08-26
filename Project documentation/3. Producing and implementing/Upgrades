@@ -1,0 +1,23 @@
+import tkinter as tk
+from tkinter import ttk
+
+SAVE_FILENAME = "cookie_clicker_save.json"
+TICK_MS = 100
+
+class Upgrade:
+    def __init__(self, key, name, baseCost, cps, unlock_at=0):
+        self.key = key
+        self.name = name
+        self.baseCost = baseCost
+        self.cps = cps
+        self.unlock_at = unlock_at
+
+    def price(self, owned):
+        return int(self.baseCost * (1.15 ** owned))
+
+UPGRADES = [
+    Upgrade("seed", "Seed", 15, 0.1, unlock_at=0),
+    Upgrade("plant", "Plant", 100, 1, unlock_at=50),
+    Upgrade("kernel", "Kernel", 1100, 8, unlock_at=500),
+    Upgrade("popcorn", "Popcorn", 13000, 47, unlock_at=2_500)
+]
