@@ -1,0 +1,17 @@
+    def _spawn_click_animation(self):
+        x = 100
+        y = 150
+        item = self.anim_canvas.create_text(x, y, text="🍿", font=("Segoe UI Emoji", 20), fill="black")
+        self._animate_popcorn(item, y, 0)
+
+    def _animate_popcorn(self, item, start_y, step):
+        if step > 20:
+            self.anim_canvas.delete(item)
+            return
+        dy = -3
+        self.anim_canvas.move(item, 0, dy)
+        gray = 255 - (step * 12)
+        gray = max(0, gray)
+        color = f"#{gray:02x}{gray:02x}{gray:02x}"
+        self.anim_canvas.itemconfig(item, fill=color)
+        self.root.after(50, lambda: self._animate_popcorn(item, start_y, step + 1))
