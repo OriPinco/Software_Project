@@ -1,0 +1,41 @@
+def buildUi(self):
+    self.root.columnconfigure(0, weight=2)
+    self.root.columnconfigure(1, weight=3)
+
+    left = ttk.Frame(self.root, padding=12)
+    left.grid(row=0, column=0,)
+    left.rowconfigure(1, weight=1)
+
+    self.popcornBtn = ttk.Button(
+        left,
+        text="🌽\npop the kernel!",
+        command=self.onClick,
+        width=16,
+    )
+    self.popcornBtn.grid(row=0, column=0, pady=(0, 10))
+    self.popcornBtn.configure(style="Popcorn.TButton")
+    self.style.configure("Popcorn.TButton", font=("Segoe UI", 18, "bold"))
+
+    statsCard = ttk.LabelFrame(left, text="Stats", padding=10)
+    statsCard.grid(row=1, column=0)
+    statsCard.columnconfigure(1, weight=1)
+
+    ttk.Label(statsCard, text="Popcorn:").grid(row=0, column=0)
+    self.kernelsPoppedVar = tk.StringVar(value="0")
+    ttk.Label(statsCard, textvariable=self.kernelsPoppedVar, font=("Segoe UI", 16, "bold")).grid(row=0, column=1)
+
+    ttk.Label(statsCard, text="per click:").grid(row=1, column=0)
+    self.perClickVar = tk.StringVar(value="1")
+    ttk.Label(statsCard, textvariable=self.perClickVar).grid(row=1, column=1)
+
+    ttk.Label(statsCard, text="kernels popped/sec:").grid(row=2, column=0)
+    self.kpsVar = tk.StringVar(value="0")
+    ttk.Label(statsCard, textvariable=self.kpsVar).grid(row=2, column=1)
+
+    ttk.Label(statsCard, text="total popped:").grid(row=3, column=0)
+    self.totalVar = tk.StringVar(value="0")
+    ttk.Label(statsCard, textvariable=self.totalVar).grid(row=3, column=1)
+
+    ttk.Label(statsCard, text="clicks:").grid(row=4, column=0, )
+    self.clicksVar = tk.StringVar(value="0")
+    ttk.Label(statsCard, textvariable=self.clicksVar).grid(row=4, column=1)
