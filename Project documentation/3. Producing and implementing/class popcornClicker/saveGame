@@ -1,0 +1,19 @@
+def saveGame(self):
+    data = {
+        "poppedKernels": self.poppedKernels,
+        "totalPoppedKernels": self.totalPoppedKernels,
+        "perClick": self.perClick,
+        "owned": self.owned,
+        "stats": self.stats,
+        "timestamp": time.time(),
+    }
+    try:
+        with open(SAVE_FILENAME, "w", encoding="utf-8") as f:
+            json.dump(data, f)
+        self.flashStatus(f"Saved to {SAVE_FILENAME}")
+    except Exception as e:
+        messagebox.showerror("Save Failed", str(e))
+
+def flashStatus(self, text, ms=3000):
+    self.statusVar.set(text)
+    self.root.after(ms, lambda: self.statusVar.set(""))

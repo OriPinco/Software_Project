@@ -1,0 +1,23 @@
+def buildShop(self):
+    hdr = ttk.Frame(self.shopFrame)
+    hdr.pack(fill="x")
+    ttk.Label(hdr, text="Item", width=12).pack(side="left")
+    ttk.Label(hdr, text="Owned", width=8).pack(side="left")
+    ttk.Label(hdr, text="kps", width=8).pack(side="left")
+    ttk.Label(hdr, text="Price", width=10).pack(side="left")
+
+    self.shopRows = {}
+    for u in UPGRADES:
+        row = ttk.Frame(self.shopFrame, padding=(0, 4))
+        row.pack(fill="x")
+        name = ttk.Label(row, text=f"{u.name}", width=16)
+        name.pack(side="left")
+        owned = ttk.Label(row, width=6)
+        owned.pack(side="left")
+        kps = ttk.Label(row, width=8)
+        kps.pack(side="left")
+        price = ttk.Label(row, width=10)
+        price.pack(side="left")
+        btn = ttk.Button(row, text="Buy", command=lambda key=u.key: self.buy(key))
+        btn.pack(side="right")
+        self.shopRows[u.key] = {"row": row, "owned": owned, "kps": kps, "price": price, "btn": btn, "name": name}

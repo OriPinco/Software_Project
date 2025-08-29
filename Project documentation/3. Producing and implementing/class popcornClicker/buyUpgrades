@@ -1,0 +1,8 @@
+def buy(self, key):
+    u = next(x for x in UPGRADES if x.key == key)
+    price = u.price(self.owned[key])
+    if self.poppedKernels >= price:
+        self.poppedKernels -= price
+        self.owned[key] += 1
+    else:
+        self.flashStatus("Not enough popcorn!")
